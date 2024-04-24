@@ -1,0 +1,53 @@
+commands:
+  # Basic AT Commands
+  basic:
+    description: Basic Command Group
+    commands:
+      restart:
+        at: "at+rst"
+      version:
+        at: "at+gmr"
+        
+
+
+  # Wi-Fi AT Commands --- esp_at_wifi_cmd_regist()
+  wifi:
+
+  # TCP IP AT Commands --- esp_at_mdns_cmd_regist() esp_at_wps_cmd_regist()
+  tcpip:
+
+  # BLE AT Commands --- esp_at_ble_cmd_regist() esp_at_ble_hid_cmd_regist() esp_at_blufi_cmd_regist()
+  ble:
+
+  # Bluetooth AT Commands --- esp_at_bt_cmd_regist() esp_at_bt_spp_cmd_regist() esp_at_bt_a2dp_cmd_regist()
+  bt:
+
+  # MQTT AT Commands --- esp_at_mqtt_cmd_regist()
+  mqtt:
+
+  # HTTP AT Commands --- esp_at_http_cmd_regist()
+  http:
+
+  # FileSystem AT Commands --- esp_at_fs_cmd_regist()
+  fs:
+
+  # WebSocket AT Commands --- esp_at_ws_cmd_regist()
+  websocket:
+
+  # Ethernet AT Commands --- esp_at_net_cmd_regist() ??? esp_at_eth_cmd_regist()
+  ethernet:
+
+  # Signaling Test AT Commands
+  signalling:
+
+  # Web server AT Commands --- esp_at_web_server_cmd_regist()
+  webserver:
+
+  # Driver AT Commands --- esp_at_driver_cmd_regist()
+  driver:
+
+  # User AT Commands --- esp_at_user_cmd_regist()
+  user:
+
+  # ??? esp_at_smartconfig_cmd_regist() esp_at_ping_cmd_regist() esp_at_eap_cmd_regist()
+  # ??? esp_at_ota_cmd_regist() esp_at_fact_cmd_regist() esp_at_rainmaker_cmd_regist()
