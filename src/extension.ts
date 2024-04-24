@@ -19,42 +19,7 @@ export function activate (context: vscode.ExtensionContext) {
   // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "vscode-tinygo-extension" is now active!');
 
-  let disposable = vscode.commands.registerCommand(
-    'vscode-tinygo-extension.generateTest',
-    () => {
-      generateTest();
-    }
-  );
-
-  disposable = vscode.commands.registerCommand(
-    'vscode-tinygo-extension.generateConsoleApplication',
-    () => {
-      generateConsoleApplication();
-    }
-  );
-
-  disposable = vscode.commands.registerCommand(
-    'vscode-tinygo-extension.generateAtCommandHandler',
-    () => {
-      generateAtCommandHandler();
-    }
-  );
-
-  disposable = vscode.commands.registerCommand(
-    'vscode-tinygo-extension.generateStandardApi',
-    () => {
-      generateStandardApi();
-    }
-  );
-
-  disposable = vscode.commands.registerCommand(
-    'vscode-tinygo-extension.generateRestApi',
-    () => {
-      generateRestApi();
-    }
-  );
-
-  disposable = vscode.commands.registerCommand('vscode-tinygo-extension.manageSdks', () => {
+  var disposable = vscode.commands.registerCommand('vscode-tinygo-extension.manageSdks', () => {
     manageSdks();
   });
 
@@ -67,29 +32,14 @@ export function activate (context: vscode.ExtensionContext) {
   });
 
   disposable = vscode.commands.registerCommand(
-    'vscode-tinygo-extension.manageSettings',
-    () => {
-      manageSettings();
-    }
-  );
-
-  disposable = vscode.commands.registerCommand(
     'vscode-tinygo-extension.displayGenericForm',
     () => {
       displayGenericForm();
     }
   );
 
-  disposable = vscode.commands.registerCommand('vscode-tinygo-extension.newProject', () => {
-    newProject();
-  });
-
   disposable = vscode.commands.registerCommand('vscode-tinygo-extension.newProjectX', () => {
     newProjectX();
-  });
-
-  disposable = vscode.commands.registerCommand('vscode-tinygo-extension.guiDesigner', () => {
-    guiDesigner();
   });
 
   context.subscriptions.push(disposable);
@@ -97,25 +47,6 @@ export function activate (context: vscode.ExtensionContext) {
 
 // This method is called when your extension is deactivated
 export function deactivate () {}
-
-async function guiDesigner () {
-  const panel = vscode.window.createWebviewPanel(
-    'guiDesigner',
-    'GUI Designer',
-    vscode.ViewColumn.One,
-    {
-      enableScripts: true,
-      localResourceRoots: [mediaFolder]
-    }
-  );
-
-  panel.iconPath = vscode.Uri.joinPath(
-    extensionContext.extensionUri,
-    'media',
-    'espressif.svg'
-  );
-  panel.webview.html = getWebviewContent();
-}
 
 async function manageSdks () {
   let formDefinition = {
@@ -617,121 +548,6 @@ Just something should go here....
   view.createPanel(formDefinition);
 }
 
-
-async function manageSettings () {
-  const panel = vscode.window.createWebviewPanel(
-    'manageSettings', // Identifies the type of the webview. Used internally
-    'SDK Settings', // Title of the panel displayed to the user
-    vscode.ViewColumn.One, // Editor column to show the new webview panel in.
-    {
-      enableScripts: true
-      //localResourceRoots: [mediaFolder, vscode.Uri.joinPath(extensionUri, 'node_modules', '@vscode/codicons', 'dist')]
-    }
-  );
-
-  panel.iconPath = vscode.Uri.joinPath(
-    extensionContext.extensionUri,
-    'media',
-    'espressif.svg'
-  );
-
-  var content = getWebviewContentSettings();
-  const codiconsUri = panel.webview
-    .asWebviewUri(
-      vscode.Uri.joinPath(
-        extensionUri,
-        'node_modules',
-        '@vscode/codicons',
-        'dist',
-        'codicon.css'
-      )
-    )
-    .toString();
-  const styleUri = panel.webview
-    .asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'styles.css'))
-    .toString();
-  const uiToolkitUri = panel.webview
-    .asWebviewUri(
-      vscode.Uri.joinPath(extensionUri, 'media', 'webview-with-tree.js')
-    )
-    .toString();
-  content = content.replace('${codiconsUri}', codiconsUri);
-  content = content.replace('${styleUri}', styleUri);
-  content = content.replaceAll('${webview.cspSource}', panel.webview.cspSource);
-  content = content.replace('${webviewUri}', uiToolkitUri);
-
-  let configMsg = {
-    command: 'config',
-    data: {
-      maxStickyHeadersVisible: 3
-    }
-  };
-
-  panel.webview.html = content;
-  let populateMsg = {
-    command: 'populate',
-    data: [
-      {
-        name: 'Section 1',
-        id: 'section_1',
-        subitems: [
-          {
-            name: 'AAAX',
-            id: 'section_1_aaa'
-          },
-          {
-            name: 'BBB',
-            id: 'section_1_bbb',
-            subitems: [
-              {
-                name: 'subsubsub 1',
-                id: 'section_1_aaa_s1'
-              },
-              {
-                name: 'subsubsub 2',
-                id: 'section_1_aaa_s2'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        name: 'Section 2',
-        id: 'section_2',
-        subitems: [
-          {
-            name: 'CCC',
-            id: 'section_1_ccc'
-          },
-          {
-            name: 'DDD',
-            id: 'section_1_ddd'
-          }
-        ]
-      },
-      {
-        name: 'Section 3',
-        id: 'section_3'
-      }
-    ]
-  };
-
-  panel.webview.onDidReceiveMessage(
-    message => {
-      switch (message.command) {
-        case 'ready':
-          panel.webview.postMessage(populateMsg);
-          panel.webview.postMessage(configMsg);
-          return;
-      }
-    },
-    undefined,
-    extensionContext.subscriptions
-  );
-}
-
-//import examples = require('./examples.json');
-
 async function displayGenericForm () {
 
   let formDefinition = [
@@ -979,48 +795,6 @@ async function displayGenericForm () {
   view.createPanel(formDefinition);
 }
 
-async function newProject () {
-  const panel = vscode.window.createWebviewPanel(
-    'catCoding', // Identifies the type of the webview. Used internally
-    'New Project',
-    vscode.ViewColumn.One,
-    {
-      enableScripts: true
-      //localResourceRoots: [mediaFolder, vscode.Uri.joinPath(extensionUri, 'node_modules', '@vscode/codicons', 'dist')]
-    } // Webview options. More on these later.
-  );
-  panel.iconPath = vscode.Uri.joinPath(
-    extensionContext.extensionUri,
-    'media',
-    'espressif.svg'
-  );
-
-  var content = getWebviewConentNewProject();
-  const codiconsUri = panel.webview
-    .asWebviewUri(
-      vscode.Uri.joinPath(
-        extensionUri,
-        'node_modules',
-        '@vscode/codicons',
-        'dist',
-        'codicon.css'
-      )
-    )
-    .toString();
-  const styleUri = panel.webview
-    .asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'styles.css'))
-    .toString();
-  const uiToolkitUri = panel.webview
-    .asWebviewUri(vscode.Uri.joinPath(extensionUri, 'out', 'webview.js'))
-    .toString();
-  content = content.replace('${codiconsUri}', codiconsUri);
-  content = content.replace('${styleUri}', styleUri);
-  content = content.replaceAll('${webview.cspSource}', panel.webview.cspSource);
-  content = content.replace('${webviewUri}', uiToolkitUri);
-
-  panel.webview.html = content;
-}
-
 async function newProjectX () {
 
   let formDefinition = {
@@ -1163,78 +937,4 @@ async function newProjectX () {
   let view = new GenericWebView(extensionContext, "New Project X");
   view.createPanel(formDefinition);
 
-}
-
-async function generateConsoleApplication () {
-}
-
-import * as fs from 'fs';
-
-async function generateStandardApi () {
-}
-
-function getWebviewContent () {
-  var canvasPath = vscode.Uri.joinPath(mediaFolder, 'canvas.html').fsPath;
-  var content = fs.readFileSync(canvasPath, 'utf-8');
-  return content;
-}
-
-function getWebviewConentNewProject () {
-  var canvasPath = vscode.Uri.joinPath(mediaFolder, 'new-project.html').fsPath;
-  var content = fs.readFileSync(canvasPath, 'utf-8');
-  return content;
-}
-
-function getWebviewContentSettings () {
-  var canvasPath = vscode.Uri.joinPath(
-    mediaFolder,
-    'webview-with-tree.html'
-  ).fsPath;
-  var content = fs.readFileSync(canvasPath, 'utf-8');
-
-  return content;
-}
-
-function getWebviewContentExamples () {
-  var canvasPath = vscode.Uri.joinPath(
-    mediaFolder,
-    'webview-with-tree.html'
-  ).fsPath;
-  var content = fs.readFileSync(canvasPath, 'utf-8');
-
-  return content;
-}
-
-async function generateRestApi () {
-  const result = await vscode.window.showQuickPick([
-    'REST API for ESP IDF HTTP/HTTPS',
-    'NuttX REST API',
-    'Zephyr REST API',
-    'Arduino REST API'
-  ]);
-
-  vscode.window.showInformationMessage('Selected ' + result);
-}
-
-async function generateAtCommandHandler () {
-  const panel = vscode.window.createWebviewPanel(
-    'catCoding', // Identifies the type of the webview. Used internally
-    'Espressif Wizard', // Title of the panel displayed to the user
-    vscode.ViewColumn.One, // Editor column to show the new webview panel in.
-    {
-      enableScripts: true
-      //localResourceRoots: [mediaFolder, vscode.Uri.joinPath(extensionUri, 'node_modules', '@vscode/codicons', 'dist')]
-    } // Webview options. More on these later.
-  );
-}
-
-async function generateTest () {
-  const result = await vscode.window.showQuickPick([
-    'PyTest - ',
-    'NuttX AT Command Handler',
-    'Zephyr AT Command Handler',
-    'Arduino AT Command Handler'
-  ]);
-
-  vscode.window.showInformationMessage('Selected ' + result);
 }

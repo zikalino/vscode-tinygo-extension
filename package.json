@@ -14,56 +14,24 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-tinygo-extension.generateConsoleApplication",
-        "title": "API: Generate Console Application"
-      },
-      {
-        "command": "vscode-tinygo-extension.generateAtCommandHandler",
-        "title": "API: Generate AT Command Handler"
-      },
-      {
-        "command": "vscode-tinygo-extension.generateRestApi",
-        "title": "API: Generate REST API"
-      },
-      {
-        "command": "vscode-tinygo-extension.generateStandardApi",
-        "title": "API: Generate Standard C API"
-      },
-      {
-        "command": "vscode-tinygo-extension.generateTest",
-        "title": "API: Generate Test"
-      },
-      {
         "command": "vscode-tinygo-extension.welcomeA",
-        "title": "espressif: Welcome (no SDK installed yet)"
+        "title": "tinygo: Welcome (no SDK installed yet)"
       },
       {
         "command": "vscode-tinygo-extension.manageSdks",
-        "title": "espressif: Manage SDKs"
-      },
-      {
-        "command": "vscode-tinygo-extension.manageSettings",
-        "title": "espressif: Manage Settings"
+        "title": "tinygo: Manage SDKs"
       },
       {
         "command": "vscode-tinygo-extension.browseExamples",
-        "title": "espressif: Browse Examples"
-      },
-      {
-        "command": "vscode-tinygo-extension.newProject",
-        "title": "espressif: New Project"
+        "title": "tinygo: Browse Examples"
       },
       {
         "command": "vscode-tinygo-extension.newProjectX",
-        "title": "espressif: New ProjectX"
-      },
-      {
-        "command": "vscode-tinygo-extension.guiDesigner",
-        "title": "espressif: GUI Designer"
+        "title": "tinygo: New ProjectX"
       },
       {
         "command": "vscode-tinygo-extension.displayGenericForm",
-        "title": "espressif: Display Generic Form"
+        "title": "tinygo: Display Generic Form"
       }
 
     ]
