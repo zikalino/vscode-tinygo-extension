@@ -26,7 +26,6 @@ const webviewConfig = {
   format: "esm",
   entryPoints: ["./src/vscode-helper-toolkit/src/webview/main.ts"],
   outfile: "./out/webview.js",
-  loader: {".html": "text"}
 };
 
 (async () => {
