@@ -419,7 +419,7 @@ async function browseExamples() {
 
   let populateMsg = {
     command: 'populate',
-    data: examples
+    data: {}
   };
 
   let setActionsMsg = {
