@@ -1,7 +1,7 @@
 {
   "name": "vscode-tinygo-extension",
   "displayName": "vscode-tinygo-extension",
-  "description": "ESP IoT Device API Generator",
+  "description": "Experimental TinyGo Extension",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.85.0"
