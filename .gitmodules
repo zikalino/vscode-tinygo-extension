@@ -1,0 +1,3 @@
+[submodule "src/vscode-helper-toolkit"]
+	path = src/vscode-helper-toolkit
+	url = https://github.com/zikalino/vscode-helper-toolkit.git
