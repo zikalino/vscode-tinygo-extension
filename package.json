@@ -1,6 +1,6 @@
 {
   "name": "vscode-tinygo-extension",
-  "displayName": "vscode-tinygo-extension",
+  "displayName": "Experimental TinyGo Extension",
   "description": "Experimental TinyGo Extension",
   "version": "0.0.1",
   "engines": {

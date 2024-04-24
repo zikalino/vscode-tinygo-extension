@@ -730,7 +730,7 @@ async function manageSettings () {
   );
 }
 
-import examples = require('./examples.json');
+//import examples = require('./examples.json');
 
 async function displayGenericForm () {
 
